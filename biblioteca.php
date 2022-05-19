@@ -21,22 +21,16 @@
 
         $conexao = RetornaConexao();
 
-        $dado1_nome_leitor = 'dado1.nome_leitor leitorum';
-        $dado2_titulo = 'dado2.titulo tituloliv';
-        $inicio = 'inicio iniciole';
-        $fim = 'fim fimle';
+        $livro_id = 'livro_id';
+        $leitor_id = 'leitor_id';
        /* TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $dado1_nome_leitor.
-            '     , ' . $dado2_titulo .
-            '     , ' . $inicio .
-            '     , ' . $fim .
-            /*TODO-2: Adicione cada variavel a consulta abaixo */
-            '  FROM leitura' .
-            '  INNER JOIN leitor dado1 on dado1.leitor_id=leitura.leitor_id' . 
-            '  INNER JOIN livros dado2 on dado2.livro_id=leitura.livro_id';
+            ' select l1.nome_leitor leitor, l2.titulo livro' .
+            ' from biblioteca ' .
+            ' inner join leitor l1 on l1.leitor_id = biblioteca.leitor_id
+             inner join livros l2 on l2.livro_id = biblioteca.livro_id'; 
 
             /*echo $sql;
             die();*/
@@ -52,10 +46,8 @@
             '<table>' .
             '    <tr>' .
             '        <th>' . 'Leitor' . '</th>' .
-            '        <th>' . 'Título' . '</th>' .
             /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
-            '        <th>' . 'Início Leitura' . '</th>' .
-            '        <th>' . 'Fim Leitura' . '</th>' .
+            '        <th>' . 'Livro' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -65,11 +57,9 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro['leitorum'] . '</td>' .
-                    '<td>' . $registro['tituloliv'] . '</td>' .
+                echo '<td>' . $registro['leitor'] . '</td>' .
                     /* TODO-4: Adicione a tabela os novos registros. */
-                    '<td>' . $registro['iniciole'] . '</td>' .
-                    '<td>' . $registro['fimle'] . '</td>';
+                    '<td>' . $registro['livro'] . '</td>' ;
                   echo '</tr>';
             }
             echo '</table>';

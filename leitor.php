@@ -21,9 +21,9 @@
 
         $conexao = RetornaConexao();
 
-        $nome_leitor = 'nome_leitor nomele';
-        $nascimento = 'nascimento nascimentole';
-        $qntd_amigos = 'qntd_amigos amigosle';
+        $nome_leitor = 'nome_leitor';
+        $nascimento = 'nascimento';
+        $qntd_amigos = 'qntd_amigos';
             /* TODO-1: Adicione uma variavel para cada coluna */
 
 
@@ -46,10 +46,10 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'Leitor' . '</th>' .
-            '        <th>' . 'Data Nascimento' . '</th>' .
+            '        <th>' . 'Nome leitor' . '</th>' .
+            '        <th>' . 'Data do nascimento' . '</th>' .
             /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
-            '        <th>' . 'Amigos' . '</th>' .
+            '        <th>' . 'Amizades' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -59,10 +59,10 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro['nomele'] . '</td>' .
-                    '<td>' . $registro['nascimentole'] . '</td>' .
+                echo '<td>' . $registro[$nome_leitor] . '</td>' .
+                    '<td>' . $registro[$nascimento] . '</td>' .
                     /* TODO-4: Adicione a tabela os novos registros. */
-                    '<td>' . $registro['amigosle'] . '</td>';
+                    '<td>' . $registro[$qntd_amigos] . '</td>';
                   echo '</tr>';
             }
             echo '</table>';

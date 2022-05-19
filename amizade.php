@@ -21,23 +21,19 @@
 
         $conexao = RetornaConexao();
 
-        $l1_nome_leitor = 'l1.nome_leitor leitor1';
-        $l2_nome_leitor = 'l2.nome_leitor leitor2';
-        $solicitacao = 'solicitacao solicitacaoam';
+        $leitorum_id = 'leitorum_id';
+        $leitordois_id = 'leitordois_id';
+        $solicitacao = 'solicitacao';
+
           /* TODO-1: Adicione uma variavel para cada coluna */
-        
 
-        $sql =
-            'SELECT ' . $l1_nome_leitor .
-            '     , ' . $l2_nome_leitor .
-            '     , ' . $solicitacao .
-            /*TODO-2: Adicione cada variavel a consulta abaixo */
-            '  FROM amizade' .
-            '  INNER JOIN leitor l1 on l1.leitor_id=amizade.leitorum_id' .
-            '  INNER JOIN leitor l2 on l2.leitor_id=amizade.leitordois_id';
 
-            /*echo $sql;
-            die();*/
+        $sql =         
+            ' select l1.nome_leitor leitor1, l2.nome_leitor leitor2, solicitacao' .
+            ' FROM amizade ' .
+            'inner join leitor l1 on l1.leitor_id = amizade.leitorum_id
+            inner join leitor l2 on l2.leitor_id = amizade.leitordois_id' ;
+                         
 
         $resultado = mysqli_query($conexao, $sql);
         if (!$resultado) {
@@ -49,8 +45,8 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'Leitor Um' . '</th>' .
-            '        <th>' . 'Leitor Dois'. '</th>' .
+            '        <th>' . 'Leitor 1' . '</th>' .
+            '        <th>' . 'Leitor 2' . '</th>' .
             /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
             '        <th>' . 'Solicitação' . '</th>' .
             '    </tr>';
@@ -65,7 +61,7 @@
                 echo '<td>' . $registro['leitor1'] . '</td>' .
                     '<td>' . $registro['leitor2'] . '</td>' .
                     /* TODO-4: Adicione a tabela os novos registros. */
-                    '<td>' . $registro['solicitacaoam'] . '</td>';
+                    '<td>' . $registro['solicitacao'] . '</td>'; 
                   echo '</tr>';
             }
             echo '</table>';

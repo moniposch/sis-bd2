@@ -21,10 +21,10 @@
 
         $conexao = RetornaConexao();
 
-        $titulo = 'titulo tituloliv';
-        $autor = 'autor autorliv';
-        $classificacao = 'classificacao classifliv';
-        $anopubli = 'anopubli anopubliliv';
+        $titulo = 'titulo';
+        $autor = 'autor';
+        $classificacao = 'classificacao';
+        $anopubli = 'anopubli';
        /* TODO-1: Adicione uma variavel para cada coluna */
 
 
@@ -53,7 +53,7 @@
             '        <th>' . 'Autor' . '</th>' .
             /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
             '        <th>' . 'Classificação' . '</th>' .
-            '        <th>' . 'Ano Publicação' . '</th>' .
+            '        <th>' . 'Ano publicação' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -63,11 +63,11 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro['tituloliv'] . '</td>' .
-                    '<td>' . $registro['autorliv'] . '</td>' .
+                echo '<td>' . $registro[$titulo] . '</td>' .
+                    '<td>' . $registro[$autor] . '</td>' .
                     /* TODO-4: Adicione a tabela os novos registros. */
-                    '<td>' . $registro['classifliv'] . '</td>' .
-                    '<td>' . $registro['anopubliliv'] . '</td>';
+                    '<td>' . $registro[$classificacao] . '</td>' .
+                    '<td>' . $registro[$anopubli] . '</td>';
                   echo '</tr>';
             }
             echo '</table>';
