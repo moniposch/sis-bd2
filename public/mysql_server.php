@@ -2,17 +2,16 @@
 
 function RetornaConexao()
 {
-  $servername = 'db';
+  $servername = 'localhost';
   $username = 'root';
-  $password = '123456';
-  $schema = 'db_app_db2';
+  $password = 'root';
+  $schema = 'livros';
 
   $conexao = mysqli_connect($servername, $username, $password, $schema);
 
   if (!$conexao) {
     die('Conexão falhou: ' . mysqli_connect_error());
   }
-
   return $conexao;
 }
 

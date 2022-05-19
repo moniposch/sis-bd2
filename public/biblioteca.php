@@ -15,26 +15,22 @@
     <div class="content">
         <h1>Bibliófilo's</h1>
 
-        <h2>Livros</h2>
+        <h2>Biblioteca</h2>
         <?php
         require_once 'mysql_server.php';
 
         $conexao = RetornaConexao();
 
-        $titulo = 'titulo';
-        $autor = 'autor';
-        $classificacao = 'classificacao';
-        $anopubli = 'anopubli';
+        $livro_id = 'livro_id';
+        $leitor_id = 'leitor_id';
        /* TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $titulo .
-            '     , ' . $autor .
-            '     , ' . $classificacao .
-            '     , ' . $anopubli .
-            /*TODO-2: Adicione cada variavel a consulta abaixo */
-            '  FROM livros';
+            ' select l1.nome_leitor leitor, l2.titulo livro' .
+            ' from biblioteca ' .
+            ' inner join leitor l1 on l1.leitor_id = biblioteca.leitor_id
+             inner join livros l2 on l2.livro_id = biblioteca.livro_id'; 
 
             /*echo $sql;
             die();*/
@@ -49,11 +45,9 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'Título' . '</th>' .
-            '        <th>' . 'Autor' . '</th>' .
+            '        <th>' . 'Leitor' . '</th>' .
             /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
-            '        <th>' . 'Classificação' . '</th>' .
-            '        <th>' . 'Ano publicação' . '</th>' .
+            '        <th>' . 'Livro' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -63,11 +57,9 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro[$titulo] . '</td>' .
-                    '<td>' . $registro[$autor] . '</td>' .
+                echo '<td>' . $registro['leitor'] . '</td>' .
                     /* TODO-4: Adicione a tabela os novos registros. */
-                    '<td>' . $registro[$classificacao] . '</td>' .
-                    '<td>' . $registro[$anopubli] . '</td>';
+                    '<td>' . $registro['livro'] . '</td>' ;
                   echo '</tr>';
             }
             echo '</table>';

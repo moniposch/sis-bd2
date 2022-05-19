@@ -14,29 +14,27 @@
 <body>
     <div class="content">
         <h1>Bibliófilo's</h1>
-
-        <h2>Livros</h2>
+      
+        <h2>Leitor</h2>
         <?php
         require_once 'mysql_server.php';
 
         $conexao = RetornaConexao();
 
-        $titulo = 'titulo';
-        $autor = 'autor';
-        $classificacao = 'classificacao';
-        $anopubli = 'anopubli';
-       /* TODO-1: Adicione uma variavel para cada coluna */
+        $nome_leitor = 'nome_leitor';
+        $nascimento = 'nascimento';
+        $qntd_amigos = 'qntd_amigos';
+            /* TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $titulo .
-            '     , ' . $autor .
-            '     , ' . $classificacao .
-            '     , ' . $anopubli .
+            'SELECT ' . $nome_leitor .
+            '     , ' . $nascimento .
+            '     , ' . $qntd_amigos .
             /*TODO-2: Adicione cada variavel a consulta abaixo */
-            '  FROM livros';
+            '  FROM leitor';
 
-            /*echo $sql;
+           /* echo $sql;
             die();*/
 
         $resultado = mysqli_query($conexao, $sql);
@@ -45,15 +43,13 @@
         }
 
 
-
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'Título' . '</th>' .
-            '        <th>' . 'Autor' . '</th>' .
+            '        <th>' . 'Nome leitor' . '</th>' .
+            '        <th>' . 'Data do nascimento' . '</th>' .
             /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
-            '        <th>' . 'Classificação' . '</th>' .
-            '        <th>' . 'Ano publicação' . '</th>' .
+            '        <th>' . 'Amizades' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -63,11 +59,10 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro[$titulo] . '</td>' .
-                    '<td>' . $registro[$autor] . '</td>' .
+                echo '<td>' . $registro[$nome_leitor] . '</td>' .
+                    '<td>' . $registro[$nascimento] . '</td>' .
                     /* TODO-4: Adicione a tabela os novos registros. */
-                    '<td>' . $registro[$classificacao] . '</td>' .
-                    '<td>' . $registro[$anopubli] . '</td>';
+                    '<td>' . $registro[$qntd_amigos] . '</td>';
                   echo '</tr>';
             }
             echo '</table>';
@@ -76,6 +71,7 @@
         }
         FecharConexao($conexao);
         ?>
+
     </div>
 </body>
 
